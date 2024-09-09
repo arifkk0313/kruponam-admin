@@ -10,8 +10,8 @@ const Dashboard = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:3019/api/v2/kruponam/payment-request-count');
-            console.log(response.data)            
+            const response = await axios.get('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-count');
+            console.log(response.data)
             setCounts({
                 totalRequest: response.data.totalRequest,
                 pendingRequest: response.data.pendingRequest,

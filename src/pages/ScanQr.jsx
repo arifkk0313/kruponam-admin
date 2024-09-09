@@ -12,7 +12,7 @@ const AdminPanel = () => {
 
             try {
                 // Send the scanned data to the server to update entrance status
-                const response = await axios.post('http://localhost:3019/api/v2/kruponam/update-entrance', {
+                const response = await axios.post('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/update-entrance', {
                     qrCode: data,
                 });
 
@@ -28,7 +28,7 @@ const AdminPanel = () => {
     };
 
     const handleError = (error) => {
-        setMessage('Error scanning QR code.',error);
+        setMessage('Error scanning QR code.', error);
     };
 
     return (
