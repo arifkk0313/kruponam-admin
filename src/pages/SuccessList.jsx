@@ -14,9 +14,10 @@ const SuccessList = () => {
 
     const fetchSuccessfulRequests = async () => {
         try {
-            const response = await axios.get('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-success', {
+            const response = await axios.get('https://arrif-api.moshimoshi.cloud/api/v2/kruponam/payment-request-success', {
                 params: { search: searchQuery } // Pass the search query to the API
-            });
+            }
+        );
             setSuccessfulRequests(response.data.data);
         } catch (error) {
             console.error('Error fetching successful payment requests:', error);

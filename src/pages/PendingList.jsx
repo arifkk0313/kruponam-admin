@@ -15,7 +15,7 @@ const PendingList = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-pending', {
+                const response = await axios.get('https://arrif-api.moshimoshi.cloud/api/v2/kruponam/payment-request-pending', {
                     params: { search: searchQuery }
                 });
                 setPendingRequests(response.data.data);
@@ -38,7 +38,7 @@ const PendingList = () => {
         setLoading(true);
         setError(null);
         try {
-            await axios.patch(`https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-update/${id}`, { status: newStatus });
+            await axios.patch(`https://arrif-api.moshimoshi.cloud/api/v2/kruponam/payment-request-update/${id}`, { status: newStatus });
             // Optimistic UI update
             setPendingRequests(prevRequests =>
                 prevRequests.map(request =>
@@ -115,8 +115,6 @@ const PendingList = () => {
                     ))}
                 </tbody>
             </table>
-
-            {/* Modal for image */}
             <Modal isOpen={isModalOpen} onClose={closeModal} imageSrc={selectedImage} />
         </div>
     );
