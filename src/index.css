@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    /* Hides the sidebar on mobile devices */
+  }
+
+  .main-content {
+    margin-left: 0;
+    /* Adjust margin when sidebar is hidden */
+  }
+}
