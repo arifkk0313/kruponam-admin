@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader'; // Use QrReader instead of QRReader
+// import { QrReader } from 'react-qr-reader'; // Use QrReader instead of QRReader
 import axios from 'axios';
 
 const AdminPanel = () => {
@@ -35,7 +35,7 @@ const AdminPanel = () => {
         <div style={{ padding: '20px', backgroundColor: '#f4f4f4', borderRadius: '8px' }}>
             <h1>Admin Panel</h1>
             <div style={{ marginBottom: '20px' }}>
-                <QrReader
+                {/* <QrReader
                     onResult={(result, error) => {
                         console.log(error,'pppp')
                         console.log(result,"3333")
@@ -47,7 +47,7 @@ const AdminPanel = () => {
                         }
                     }}
                     style={{ width: '100%' }}
-                />
+                /> */}
             </div>
             {message && <p>{message}</p>}
         </div>
