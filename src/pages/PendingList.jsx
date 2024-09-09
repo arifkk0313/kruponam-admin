@@ -90,6 +90,7 @@ const PendingList = () => {
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Phone</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Department</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Year</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Transaction ID</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Image</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Status</th>
                     </tr>
@@ -101,6 +102,7 @@ const PendingList = () => {
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.phone}</td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.department}</td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.year}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.transactionId}</td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {request.proof && <img src={request.proof} alt="Proof" style={{ width: '100px', height: 'auto', cursor: 'pointer' }} onClick={() => openImageModal(request.proof)} />}
                             </td>
