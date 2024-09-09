@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from '../component/Modal'; // Adjust the path as necessary
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const PendingList = () => {
     const [pendingRequests, setPendingRequests] = useState([]);
@@ -9,6 +10,7 @@ const PendingList = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [statusLoadingId, setStatusLoadingId] = useState(null); // Track the ID for which the status is being updated
 
     useEffect(() => {
         const fetchPendingRequests = async () => {
@@ -35,7 +37,7 @@ const PendingList = () => {
     }, [searchQuery]);
 
     const handleStatusChange = async (id, newStatus) => {
-        setLoading(true);
+        setStatusLoadingId(id); // Show loader for the specific ID
         setError(null);
         try {
             await axios.patch(`https://arrif-api.moshimoshi.cloud/api/v2/kruponam/payment-request-update/${id}`, { status: newStatus });
@@ -49,7 +51,9 @@ const PendingList = () => {
             setError('Error updating payment request status.');
             console.error('Error updating payment request status:', error);
         } finally {
-            setLoading(false);
+            setTimeout(() => {
+                setStatusLoadingId(null); // Hide loader after 200ms
+            }, 200);
         }
     };
 
@@ -100,16 +104,26 @@ const PendingList = () => {
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {request.proof && <img src={request.proof} alt="Proof" style={{ width: '100px', height: 'auto', cursor: 'pointer' }} onClick={() => openImageModal(request.proof)} />}
                             </td>
-                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-                                <select
-                                    value={request.status}
-                                    onChange={(e) => handleStatusChange(request._id, e.target.value)}
-                                    style={{ width: '100%' }}
-                                >
-                                    <option value="pending">Pending</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
+                            <td style={{ border: '1px solid #ddd', padding: '8px', position: 'relative' }}>
+                                {statusLoadingId === request._id ? (
+                                    <ClipLoader
+                                        color={'black'}
+                                        loading={true}
+                                        size={20}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                ) : (
+                                    <select
+                                        value={request.status}
+                                        onChange={(e) => handleStatusChange(request._id, e.target.value)}
+                                        style={{ width: '100%' }}
+                                    >
+                                        <option value="pending">Pending</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
+                                )}
                             </td>
                         </tr>
                     ))}
