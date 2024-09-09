@@ -11,24 +11,28 @@ const PendingList = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        fetchPendingRequests();
-    }, [searchQuery]);
+        const fetchPendingRequests = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await axios.get('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-pending', {
+                    params: { search: searchQuery }
+                });
+                setPendingRequests(response.data.data);
+            } catch (error) {
+                setError('Error fetching pending payment requests.');
+                console.error('Error fetching pending payment requests:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const fetchPendingRequests = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await axios.get('https://arrif-api.moshimoshi.cloud//api/v2/kruponam/payment-request-pending', {
-                params: { search: searchQuery }
-            });
-            setPendingRequests(response.data.data);
-        } catch (error) {
-            setError('Error fetching pending payment requests.');
-            console.error('Error fetching pending payment requests:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+        fetchPendingRequests(); // Initial fetch
+
+        const intervalId = setInterval(fetchPendingRequests, 5000); // Fetch every 5 seconds
+
+        return () => clearInterval(intervalId); // Clean up the interval on component unmount
+    }, [searchQuery]);
 
     const handleStatusChange = async (id, newStatus) => {
         setLoading(true);
