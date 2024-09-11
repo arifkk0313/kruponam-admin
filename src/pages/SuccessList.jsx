@@ -67,6 +67,7 @@ const SuccessList = () => {
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Year</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Entrance</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Booking Id</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Password</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>QR Image</th>
                     </tr>
                 </thead>
@@ -81,6 +82,7 @@ const SuccessList = () => {
                                 {request.entrance ? 'Yes' : 'No'}
                             </td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.bookingId}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.password}</td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {request.qrImage &&
                                     <img
