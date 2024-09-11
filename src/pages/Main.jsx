@@ -3,6 +3,7 @@ import Dashboard from './Dashboard'; // Import the Dashboard component
 import PendingList from './PendingList';
 import SuccessList from './SuccessList';
 import ScanQr from './ScanQr';
+import BankDetails from './BankDetails';
 
 const AdminPanel = () => {
     const [activePage, setActivePage] = useState('Dashboard'); // Set default page
@@ -18,6 +19,8 @@ const AdminPanel = () => {
                 return <SuccessList />;
             case 'ScanQr':
                 return <ScanQr />;
+            case 'bankDetails':
+                return <BankDetails />;
             default:
                 return <Dashboard />;
         }
@@ -106,6 +109,9 @@ const AdminPanel = () => {
                 </div>
                 <div onClick={() => handleNavClick('ScanQr')} style={navItemStyle}>
                     Scan QR
+                </div>
+                <div onClick={() => handleNavClick('bankDetails')} style={navItemStyle}>
+                    BankDetails
                 </div>
             </div>
 
