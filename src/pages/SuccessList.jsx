@@ -18,6 +18,7 @@ const SuccessList = () => {
                 params: { search: searchQuery } // Pass the search query to the API
             }
         );
+        console.log(response,"321")
             setSuccessfulRequests(response.data.data);
         } catch (error) {
             console.error('Error fetching successful payment requests:', error);
@@ -68,6 +69,8 @@ const SuccessList = () => {
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Entrance</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Booking Id</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>Password</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Payment Id</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Payment Proof</th>
                         <th style={{ border: '1px solid #ddd', padding: '8px' }}>QR Image</th>
                     </tr>
                 </thead>
@@ -83,6 +86,17 @@ const SuccessList = () => {
                             </td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.bookingId}</td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request.password}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{request?.paymentReqeustId?.transactionId}</td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
+                                {request.qrImage &&
+                                    <img
+                                        src={request?.paymentReqeustId?.proof}
+                                        alt="QR Code"
+                                        style={{ width: '100px', height: 'auto', cursor: 'pointer' }}
+                                        onClick={() => openImageModal(request?.paymentReqeustId?.proof)}
+                                    />
+                                }
+                            </td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {request.qrImage &&
                                     <img
@@ -93,6 +107,7 @@ const SuccessList = () => {
                                     />
                                 }
                             </td>
+                            
                         </tr>
                     ))}
                 </tbody>
