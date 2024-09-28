@@ -17,6 +17,8 @@ const Dashboard = () => {
                 pendingRequest: response.data.pendingRequest,
                 successRequest: response.data.successRequest,
                 rejectedRequest: response.data.rejectedRequest,
+                totalGetIn: response.data.totalGetIn,
+                totalGetOut: response.data.totalGetOut,
             });
         } catch (error) {
             console.error('Error fetching payment request counts:', error);
@@ -42,6 +44,14 @@ const Dashboard = () => {
                 <div style={{ padding: '20px', backgroundColor: '#e22134', borderRadius: '8px', color: 'white' }}>
                     <h3>Rejected Requests</h3>
                     <p>{counts.rejectedRequest}</p>
+                </div>
+                <div style={{ padding: '20px', backgroundColor: '#e22134', borderRadius: '8px', color: 'white',width:'150px' }}>
+                    <h3>IN</h3>
+                    <p>{counts.totalGetIn}</p>
+                </div>
+                <div style={{ padding: '20px', backgroundColor: '#e22134', borderRadius: '8px', color: 'white' ,width:'150px'}}>
+                    <h3>OUT</h3>
+                    <p>{counts.totalGetOut}</p>
                 </div>
             </div>
         </div>
